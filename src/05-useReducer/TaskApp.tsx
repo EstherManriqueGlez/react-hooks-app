@@ -18,19 +18,61 @@ export const TasksApp = () => {
   const [inputValue, setInputValue] = useState('');
 
   const addTodo = () => {
-    console.log('Agregar tarea', inputValue);
+    if (inputValue.length === 0) return;
+
+    const newTodo: Todo = {
+      id: Date.now(),
+      text: inputValue.trim(),
+      completed: false,
+    };
+
+    setTodos([...todos, newTodo]);
+
+    // También podemos podemos hacerlo así:
+    // setTodos((currentTodos) => [...currentTodos, newTodo]);
+
+    // Limpiar el input
+    setInputValue('');
   };
 
   const toggleTodo = (id: number) => {
-    console.log('Cambiar de true a false', id);
+
+    const updatedTodos = todos.map((todo) => {
+      if (todo.id === id) {
+
+        // console.log({ 'Tarea antes de cambiar': todo.text, completed: todo.completed });
+        return { ...todo, completed: !todo.completed };
+
+      }
+      // console.log({ 'Tarea después de cambiar': todo.text, completed: todo.completed });
+      return todo;
+    });
+
+    setTodos(updatedTodos);
+      
+    // console.log('Cambiar de true a false', id);
   };
 
   const deleteTodo = (id: number) => {
-    console.log('Eliminar tarea', id);
+    const updatedTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(updatedTodos);
+
+    // Para mostrar en consola la tarea que se va a eliminar
+    // const todoToDelete = todos.find((todo) => todo.id === id);
+    // console.log({ 'Tarea a eliminar': todoToDelete?.text });
+
+    
+    // También podemos hacerlo así:
+    // setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));
+
+    // console.log('Eliminar tarea', id);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
-    console.log('Presiono enter');
+    // console.log({ key: e.key });
+    if (e.key === 'Enter') {
+      addTodo();
+    }
   };
 
   const completedCount = todos.filter((todo) => todo.completed).length;
