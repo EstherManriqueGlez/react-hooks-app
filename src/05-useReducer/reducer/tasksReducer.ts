@@ -1,3 +1,5 @@
+import * as z from 'zod';
+
 interface Todo {
   id: number;
   text: string;
@@ -16,14 +18,47 @@ export type TaskAction =
   | { type: 'DELETE_TODO'; payload: number }
   | { type: 'TOGGLE_TODO'; payload: number };
 
-  export const getTasksInitialState = (): TaskState => {
+const TodoSchema = z.object({
+  id: z.number(),
+  text: z.string(),
+  completed: z.boolean(),
+});
+
+const TaskStateSchema = z.object({
+  todos: z.array(TodoSchema),
+  length: z.number(),
+  completed: z.number(),
+  pending: z.number(),
+});
+
+export const getTasksInitialState = (): TaskState => {
+  const localStorageState = localStorage.getItem('tasks-state');
+
+  if (!localStorageState) {
     return {
       todos: [],
       length: 0,
       completed: 0,
       pending: 0,
-    }
+    };
   }
+
+  // Validar el estado con Zod
+  const result = TaskStateSchema.safeParse(JSON.parse(localStorageState));
+  if (result.error) {
+    console.log(result.error);
+    return {
+      todos: [],
+      length: 0,
+      completed: 0,
+      pending: 0,
+    };
+  }
+
+  // !OJO: Tener cuidado, porque el objeto puede haber sido manipulado manualmente en el localStorage
+  // return JSON.parse(localStorageState);
+  return result.data;
+};
 
 export const tasksReducer = (
   state: TaskState,
@@ -49,10 +84,13 @@ export const tasksReducer = (
     }
 
     case 'DELETE_TODO': {
-      const currentTodos = state.todos.filter((todo) => todo.id !== action.payload);
+      const currentTodos = state.todos.filter(
+        (todo) => todo.id !== action.payload,
+      );
 
-      
-      const completedTodos = currentTodos.filter((todo) => todo.completed).length;
+      const completedTodos = currentTodos.filter(
+        (todo) => todo.completed,
+      ).length;
 
       return {
         ...state,
@@ -74,8 +112,8 @@ export const tasksReducer = (
       return {
         ...state,
         todos: updatedTodos,
-        completed: updatedTodos.filter(todo => todo.completed).length,
-        pending: updatedTodos.filter(todo => !todo.completed).length,
+        completed: updatedTodos.filter((todo) => todo.completed).length,
+        pending: updatedTodos.filter((todo) => !todo.completed).length,
       };
     }
 
