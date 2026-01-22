@@ -71,7 +71,6 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
         authStatus: authStatus,
         isAuthenticated: authStatus === 'authenticated',
         user: user,
-
         login: handleLogin,
         logout: handleLogout,
       }}
