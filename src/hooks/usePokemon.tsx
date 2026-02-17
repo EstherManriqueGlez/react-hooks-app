@@ -15,7 +15,7 @@ export const usePokemon = ({ id }: Props) => {
 
   const [isLoading, setIsLoading] = useState(true);
 
-  const getPokemonBiId = async (id: number) => {
+  const getPokemonById = async (id: number) => {
 
     setIsLoading(true);
     const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
@@ -32,7 +32,7 @@ export const usePokemon = ({ id }: Props) => {
   };
 
   useEffect(() => {
-    getPokemonBiId(id);
+    getPokemonById(id);
   }, [id]);
 
   return {
@@ -41,7 +41,7 @@ export const usePokemon = ({ id }: Props) => {
     pokemon,
 
     // Methods
-    getPokemonBiId,
+    getPokemonById,
     formattedId: id.toString().padStart(3, '0'),
   };
 };
