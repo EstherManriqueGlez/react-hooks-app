@@ -31,6 +31,7 @@ export const TrafficLightWithEffect = () => {
   useEffect(() => {
     if (countDown > 0) return;
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setCountDown(5);
 
     if (light === 'red') {
