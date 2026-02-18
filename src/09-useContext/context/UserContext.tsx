@@ -1,4 +1,9 @@
-import { createContext, useEffect, useState, type PropsWithChildren } from 'react';
+import {
+  createContext,
+  useEffect,
+  useState,
+  type PropsWithChildren,
+} from 'react';
 
 import { users, type User } from '../data/user-mock.data';
 
@@ -19,6 +24,7 @@ interface UserContextProps {
   logout: () => void;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const UserContext = createContext({} as UserContextProps);
 
 // HOC - Higher Order Component
@@ -51,18 +57,15 @@ export const UserContextProvider = ({ children }: PropsWithChildren) => {
   };
 
   useEffect(() => {
-
     const storedUserId = localStorage.getItem('userId');
 
-    if(storedUserId) {
+    if (storedUserId) {
       // eslint-disable-next-line react-hooks/set-state-in-effect
       handleLogin(+storedUserId);
-      return
+      return;
     }
 
     handleLogout();
-
-
   }, []);
 
   return (
