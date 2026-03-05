@@ -1,8 +1,8 @@
-// import { useEffect, useState } from 'react';
 import { useTrafficLight } from '../hooks/useTrafficLight';
 
 export const TrafficLightWithHook = () => {
-  const { countDown, percentage, redLight, yellowLight, greenLight } = useTrafficLight();
+  const { countDown, percentage, redLight, yellowLight, greenLight } =
+    useTrafficLight();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-gray-900 to-slate-800 flex items-center justify-center p-4">
@@ -18,17 +18,11 @@ export const TrafficLightWithHook = () => {
             style={{ width: `${percentage}%` }}
           ></div>
         </div>
-        <div
-          className={`w-32 h-32 ${redLight} rounded-full`}
-        ></div>
+        <div className={`w-32 h-32 ${redLight} rounded-full`}></div>
 
-        <div
-          className={`w-32 h-32 ${yellowLight} rounded-full`}
-        ></div>
+        <div className={`w-32 h-32 ${yellowLight} rounded-full`}></div>
 
-        <div
-          className={`w-32 h-32 ${greenLight} rounded-full`}
-        ></div>
+        <div className={`w-32 h-32 ${greenLight} rounded-full`}></div>
       </div>
     </div>
   );
