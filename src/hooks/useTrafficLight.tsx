@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-
+import { useState, useEffect } from 'react';
 
 const colors = {
   red: 'bg-red-500 animate-pulse',
@@ -9,8 +8,6 @@ const colors = {
 
 // Tipamos los colores del semáforo usando keyof para mayor escalabilidad
 type TrafficLightColor = keyof typeof colors;
-
-
 
 export const useTrafficLight = () => {
   const [light, setLight] = useState<TrafficLightColor>('red');
@@ -53,9 +50,7 @@ export const useTrafficLight = () => {
     }
   }, [countDown, light]);
 
-
   return {
-
     // Properties / Pros
     countDown,
     colors,
@@ -68,5 +63,5 @@ export const useTrafficLight = () => {
     greenLight: light === 'green' ? colors.green : 'bg-gray-500',
 
     // Methods
-  }
-}
+  };
+};
