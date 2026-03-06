@@ -21,16 +21,16 @@ export const ScrambleWords = () => {
 
   const {
     currentWord,
-    scrambledWord,
-    guess,
-    points,
     errorCounter,
-    maxAllowErrors,
+    guess,
     isGameOver,
-    skipCounter,
+    maxAllowErrors,
     maxSkips,
-    words,
+    points,
+    scrambledWord,
+    skipCounter,
     totalWords,
+    words,
   } = state;
 
   useEffect(() => {

@@ -42,7 +42,7 @@ export const TasksApp = () => {
     }
   };
 
-  // Pdemos desestructurar el state para obtener los valores necesarios y renombrar las variables.
+  // Podemos desestructurar el state para obtener los valores necesarios y renombrar las variables.
   const { todos, completed: completedCount, length: totalCount } = state;
 
   // const completedCount = todos.filter((todo) => todo.completed).length;

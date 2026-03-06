@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 // ! Importante:
 // Es necesario componentes de Shadcn/ui
 // https://ui.shadcn.com/docs/installation/vite
@@ -121,7 +122,7 @@ export const ScrambleWords = () => {
       spread: 120,
       origin: { y: 0.6 },
     });
-    
+
     return (
       <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-indigo-100 flex items-center justify-center p-4">
         <div className="w-full max-w-md mx-auto">

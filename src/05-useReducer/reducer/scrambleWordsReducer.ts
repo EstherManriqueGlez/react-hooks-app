@@ -8,8 +8,8 @@ export interface ScrambleWordsState {
   points: number;
   scrambledWord: string;
   skipCounter: number;
-  words: string[];
   totalWords: number;
+  words: string[];
 }
 
 const GAME_WORDS = [
