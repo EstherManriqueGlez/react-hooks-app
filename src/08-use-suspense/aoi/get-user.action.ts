@@ -1,12 +1,9 @@
-
-
 export interface User {
   id: number;
   name: string;
   location: string;
   role: string;
 }
-
 
 export const getUserAction = async (id: number) => {
   console.log('Fetching user data...');
@@ -15,12 +12,10 @@ export const getUserAction = async (id: number) => {
 
   console.log('User data fetched resolved.');
 
-  
-
   return {
     id,
-    name: 'Rene Manrique',
+    name: 'René Manrique',
     location: 'Ottawa, Canada',
     role: 'Software Engineer',
-  }
-}
+  };
+};
