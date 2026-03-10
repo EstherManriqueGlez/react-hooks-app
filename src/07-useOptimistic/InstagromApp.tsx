@@ -42,30 +42,34 @@ export const InstagromApp = () => {
 
     startTransition(async () => {
       // Simular la petición http al servidor
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      
+      await new Promise((resolve) => {
+        setTimeout(() => {
+          resolve(true);
+        }, 3000);
 
-      // setComments((prevComments) => [
-      //   ...prevComments,
-      //   {
-      //     id: new Date().getTime(),
-      //     text: newCommentText,
-      //   },
-      // ]);
+        setComments((prevComments) => [
+          ...prevComments,
+          {
+            id: new Date().getTime(),
+            text: newCommentText,
+          },
+        ]);
 
-      // !Este sería el código para revertir el proceso en caso de error en la petición
-      setComments(prev => prev);
+        if (!resolve) {
+          // !Este sería el código para revertir el proceso en caso de error en la petición
+          setComments((prev) => prev);
 
-      toast('Error al agregar el comentario', {
-        description: 'Por favor, inténtalo de nuevo más tarde.',
-        duration: 10_000,
-        position: 'top-right',
-        action: {
-          label: 'Close',
-          onClick: () => toast.dismiss(),
+          toast('Error al agregar el comentario', {
+            description: 'Por favor, inténtalo de nuevo más tarde.',
+            duration: 10_000,
+            position: 'top-right',
+            action: {
+              label: 'Close',
+              onClick: () => toast.dismiss(),
+            },
+          });
         }
       });
-
     });
   };
 
