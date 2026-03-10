@@ -2,9 +2,8 @@ import { use, type Usable } from 'react';
 import { type User } from './aoi/get-user.action';
 
 interface Props {
-  getUser: Usable<User>
+  getUser: Usable<User>;
 }
-
 
 export const ClientInformation = ({ getUser }: Props) => {
   const user = use(getUser);
