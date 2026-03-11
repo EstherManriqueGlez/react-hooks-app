@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 export const AboutPage = () => {
   const { isAuthenticated, logout } = use(UserContext);
 
-  console.log({ isAuthenticated });
+  // console.log({ isAuthenticated });
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen">
